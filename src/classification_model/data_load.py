@@ -5,12 +5,17 @@ DATA_PATH = os.path.join(
     os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
     "data",
     "raw",
-    "CarPrice_Assignment.csv"
+    "Telco_Customer_Churn.csv"
 )
 
-def load_raw_data() -> pd.DataFrame:
+def load_data() -> pd.DataFrame:
     """
-    Load the Shopping Behaviour Dataset from Kaggle.
+    Load the Telco Customer Churn dataset into a DataFrame.
+    Returns:
+        pd.DataFrame: Raw data including customer features and churn label.
     """
+    # Ensure the file exists at the specified path
+    if not os.path.exists(DATA_PATH):
+        raise FileNotFoundError(f"Data file not found at {DATA_PATH}.")
     df = pd.read_csv(DATA_PATH)
     return df
